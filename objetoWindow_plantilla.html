@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>UT3 Objeto Window</title>
+    </head>
+
+    <body>
+
+        <h1>El BOM</h1>
+        <h2>El objeto Window</h2>
+
+        <p id="parrafo"></p>
+
+        <iframe id="fr1" src="3A05/3A05.html" width="40%" height="150"></iframe>
+        <iframe src="3A03.html" width="40%" height="150"></iframe>
+
+        <p id="ifr"></p>
+
+        <button id="boton1" onclick="crearVentana()">Crear Ventana</button>
+        <button id="boton2" onclick="cerrarVentana()">Cerrar Ventana</button>
+        <button id="boton3" onclick="redimensionarVentana()">Resize Ventana</button>
+        <button id="boton4" onclick="moverVentana()">Mover Ventana</button>
+        <button id="boton5" onclick="retardoVentana()">Alert 3s</button>
+        <button id="boton6" onclick="quitarRetardo()">Clear Retardo</button>
+        <button id="boton7" onclick="intervaloReloj()">Intervalo</button>
+        <button id="boton8" onclick="quitarIntervalo()">Clear Int</button>
+
+
+        <p id = "ventanas"></p>
+      
+        <p id = "reloj"></p>
+
+        <script>
+      
+         //PROPIEDADES BÁSICAS DEL OBJETO WINDOW    
+        
+            objWindow();            //Llamo a la función antes para que muestre info antes de evento
+
+            function objWindow() { 
+                let cadena="";
+                window.name="mi ventana principal";
+                cadena +="Información:<br> nombre ventana: "+ window.name;
+                
+
+                //tamaño ventana con toolbar y scrollbars
+                cadena+= "<br> alto externo"+ window.outerHeight;
+                cadena+= "<br> ancho externo"+ window.outerWidth;
+
+                 //tamaño ventana sin toolbar y scrollbars
+                 cadena+= "<br> alto interno"+ window.innerHeight;
+                cadena+= "<br> ancho interno"+ window.innerWidth;
+
+                // posicion del scroll. devuelve el nº de pixeles donde se encuentra el scroll
+                cadena += "<br> posicion del scroll eje x "+ window.scrollX;
+                cadena += "<br> posicion del scroll eje y "+ window.scrollY;
+
+                //Distancia desde la esquina izquierda
+
+                cadena += "<br> distancia desde la  izquierda" + window.screenX;
+                cadena += "<br> distancia desde arriba" + window.screenY;
+
+
+                document.getElementById("parrafo").innerHTML = cadena;
+
+            }
+            //evento objeto windows , se ejecuta cuando movemos la ventana
+
+            window.onresize = objWindow;
+           
+            
+        //  PROPIEDADES DE IFRAMES
+
+        let cadena2= "";
+        cadena2+="<br> el número de frames de la página es "+ window.frames.length;
+        cadena2+="<br> la pagina actual no esta insertada en un frame"+
+                     "frameElement devuelve: " + window.frameElement;
+        cadena2 +="<br> el frame donde esta incluido el iframe1 es:  "+ window.frames[0].frameElement.src;            
+        cadena2 +="<br> el frame donde esta incluido el iframe2 es:  "+ window.frames[1].frameElement.src;
+
+        document.getElementById("ifr").innerHTML = cadena2;
+
+      
+
+
+        //METODOS DEL OBJETO WINDOW Y PROPIEDADES DE OTRAS VENTANAS
+
+            let ventanaNueva;
+            let cadena3 ="";
+            function crearVentana(){
+
+               ventanaNueva = window.open("","_blank","width=600,height=200");
+              
+              
+               ventanaNueva.document.write("<h1> hola <h1>");
+
+                cadena3 += "<br>el padre de la nueva ventana es "+ ventanaNueva.parent.location;
+                cadena3 += "<br>el padre del iframe2 "+ window.frames[1].parent.name;
+                cadena3 += "<br>la ventana que ha abirto la nueva es : "+ ventanaNueva.opener.name;
+
+                document.getElementById("ventanas").innerHTML = cadena3;
+
+            }
+            
+            /* ventanaNueva.document.write("<h1> hola <h1>") */
+
+            function cerrarVentana(){
+              ventanaNueva.close();
+            }
+
+            function redimensionarVentana(){
+               ventanaNueva.focus();
+               ventanaNueva.resizeBy(100,100);
+            }
+
+            function moverVentana(){
+                ventanaNueva.focus();
+               ventanaNueva.moveBy(10,10);
+            }
+
+        //MÉTODOS DE INSTRUCCIONES DE TIEMPO    
+
+            function saludo(){
+                alert("hola")
+               
+            }
+
+            let time; 
+
+            function retardoVentana(){
+               
+                time = window.setTimeout(saludo,3000);
+            }
+
+            function quitarRetardo(){
+               window.clearTimeout(time);
+            }
+
+           
+            function reloj(){
+               let hora = new Date();
+                document.getElementById("reloj").innerHTML ="hora:"+hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds();
+               
+            }
+
+            let relojperiodico;
+            function intervaloReloj(){
+                relojperiodico.setInterval(reloj,1000);
+                    
+                
+               
+            }
+
+            function quitarIntervalo(){
+             window.clearInterval(relojperiodico);  
+            }
+
+        </script>
+
+    </body>
+     
+</html>
