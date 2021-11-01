@@ -9,8 +9,8 @@
 
     <body>
 
-        <h1>El BOM</h1>
-        <h2>El objeto Window</h2>
+        <h1>El BOM </span></h1> 
+        <h2>El objeto Window <span style="margin:0 0 0 500px" id="reloj2"></span></h2>
 
         <p id="parrafo"></p>
 
@@ -141,20 +141,27 @@
            
             function reloj(){
                let hora = new Date();
-                document.getElementById("reloj").innerHTML ="hora:"+hora.getHours()+":"+hora.getMinutes()+":"+hora.getSeconds();
-               
+                document.getElementById("reloj").innerHTML ="hora:"+hora.getHours()+":"
+                +hora.getMinutes()+":"+hora.getSeconds();
+                document.getElementById("reloj2").innerHTML ="hora:"+hora.getHours()+":"
+                +hora.getMinutes()+":"+hora.getSeconds();
             }
 
             let relojperiodico;
             function intervaloReloj(){
-                relojperiodico.setInterval(reloj,1000);
-                    
+               
+               
+                relojperiodico = setInterval(reloj,101);
+                 
                 
                
             }
 
+
             function quitarIntervalo(){
              window.clearInterval(relojperiodico);  
+             document.getElementById("reloj").innerHTML ="";
+             document.getElementById("reloj2").innerHTML ="";
             }
 
         </script>
