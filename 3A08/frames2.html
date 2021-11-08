@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <button id="boton" type="button">Cambiar</button>
+
+  </form>
+  <script>
+console.log(1);
+    document.getElementById("boton").addEventListener("click",cambiar);
+    
+    console.log(2);
+    function cambiar() {
+
+     let color = window.parent.frames[0].document.getElementById("fondo").value;
+     let posicion = window.parent.frames[0].document.getElementById("posicion").value;
+     console.log(3);
+     console.log(color);
+     if (color == "azul") {
+       if (posicion == "izquierda") {
+         window.parent.frames[0].document.bgColor = "blue";
+         console.log("az iz")
+       }else{
+        window.parent.frames[1].document.bgColor = "blue";
+        console.log("az de")
+       }
+     }
+     else {
+      if (posicion == "derecha") {
+         window.parent.frames[1].document.bgColor = "green";
+         console.log("ver iz")
+       }else{
+        window.parent.frames[0].document.bgColor = "green";
+        console.log("ver de")
+       }
+       
+     }
+      
+
+    }
+    </script>
+
+</body>
+</html>
