@@ -9,7 +9,7 @@
 <body>
 
   <script>
-
+/* funciones para las cookies */
   function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -32,39 +32,29 @@
   }
   return "";
 }
-
-
-function delCookie (name,path,domain) {
-
-if (getCookie(name)) {
-document.cookie = name + "=" +
-((path == null) ? "" : "; path=" + path) +
-((domain == null) ? "" : "; domain=" + domain)
-+
-"; expires=Thu, 01-Jan-70 00:00:01 UTC";
-}
-}
-
-let visitas;
-
-if (getCookie("visitas")==""){
-  let confCoo = confirm("desea guardar las visitas");
-}
-
-
-if (confcoo) {
-  setCookie("visitas", 1, 365);
+function borrarcookies(name) {
+  document.cookie = name+"=;expires=Thu, 01-Jan-70 00:00:01 UTC;path=/"
   
-}else{
-
-delCookie ("visitas")
-
 }
 
 
+/* contador de visitas */
 
 
+ let confirmar = confirm("Aceptar el usos de cookies para almacenar las visitas.\n\nCancelar para borrar las visitas.");
 
+ if (confirmar) {
+  let x = getCookie("visitas");
+  x++; 
+  console.log(x);
+ setCookie("visitas", x, 365);
+ alert("Has visitado esta paguina: "+getCookie("visitas"));
+
+ }else{
+   /* borrar cookie */
+   borrarcookies("visitas");
+ }
+ 
 
 
   </script>
